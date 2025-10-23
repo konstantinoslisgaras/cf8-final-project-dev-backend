@@ -29,7 +29,10 @@ public class OpponentDataLoader implements CommandLineRunner {
                 new Opponent("OT75142094", "Levadiakos", "Greece"),
                 new Opponent("OT51098945", "Arsenal FC", "England"),
                 new Opponent("OT36758902", "PAOK FC", "Greece"),
-                new Opponent("OT92415380", "AE Larissa", "Greece"))
+                new Opponent("OT92415380", "AE Larissa", "Greece"),
+                new Opponent("OT94961380", "FC Barcelona", "Spain"),
+                new Opponent("OT64021380", "AEK FC", "Greece")
+                )
         );
     }
 }

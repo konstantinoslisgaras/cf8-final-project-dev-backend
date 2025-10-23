@@ -45,6 +45,9 @@ public class Player {
     @Column(name = "preferred_foot", nullable = false)
     private PreferredFoot preferredFoot;
 
+    @Column(name = "captain")
+    private boolean isCaptain;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "detailed_bio_id")
     private DetailedBio detailedBio;
@@ -56,7 +59,7 @@ public class Player {
     private Set<PlayerMatch> playersMatches = new HashSet<>();
 
     public Player(String id, String lastname, String firstname, Integer birthYear, String nationality, Integer shirtNumber,
-                  Position position, PreferredFoot preferredFoot, DetailedBio detailedBio, Boolean playsForOlympiacos) {
+                  Position position, PreferredFoot preferredFoot, boolean isCaptain, DetailedBio detailedBio, Boolean playsForOlympiacos) {
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
@@ -65,6 +68,7 @@ public class Player {
         this.shirtNumber = shirtNumber;
         this.position = position;
         this.preferredFoot = preferredFoot;
+        this.isCaptain = isCaptain;
         this.detailedBio = detailedBio;
         this.playsForOlympiacos = playsForOlympiacos;
         this.playersMatches = new HashSet<>();

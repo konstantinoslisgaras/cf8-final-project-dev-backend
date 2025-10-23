@@ -140,6 +140,26 @@ public class MatchDataLoader implements CommandLineRunner {
                 "05/10/2025", SUNDAY, superLeagueGreece, AWAY,
                 9, "Super League MatchDay: 06, Round 1", mendilibar, season2526, teamStats09051025);
         saveMatchAndUpdateTotalStats(match09051025, teamStats09051025, season2526TotalTeamStats);
+
+        // Match 10 | AE Larissa - OLYMPIACOS F.C. 0:2 | 18/10/2025
+        TeamStats teamStats10181025 = new TeamStats("TS10181025",
+                2, 1, 0, 1, 0, 1, 0, 0, 1);
+        Match match10181025 = new Match("MA10181025",
+                olympiacos, opponentRepository.findByOpponentName("AE Larissa").orElseThrow(),
+                2, 0,
+                "18/10/2025", SATURDAY, superLeagueGreece, AWAY,
+                10, "Super League MatchDay: 07, Round 1", mendilibar, season2526, teamStats10181025);
+        saveMatchAndUpdateTotalStats(match10181025, teamStats10181025, season2526TotalTeamStats);
+
+        // Match 11 | FC Barcelona - OLYMPIACOS F.C. 6:1 | 21/10/2025
+        TeamStats teamStats11211025 = new TeamStats("TS11211025",
+                1, 0, 6, 4, 1, 0, 0, 1, 1);
+        Match match11211025 = new Match("MA11211025",
+                olympiacos, opponentRepository.findByOpponentName("FC Barcelona").orElseThrow(),
+                1, 6,
+                "21/10/2025", TUESDAY, championsLeague, AWAY,
+                11, "Champions League League Phase MatchDay: 03", mendilibar, season2526, teamStats11211025);
+        saveMatchAndUpdateTotalStats(match11211025, teamStats11211025, season2526TotalTeamStats);
     }
 
     private void saveMatchAndUpdateTotalStats(Match match, TeamStats teamStats, TeamStats teamTotals) {

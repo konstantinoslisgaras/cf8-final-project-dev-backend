@@ -12,10 +12,10 @@ public enum Position {
     CENTER_MIDFIELDER(8, "CM"),
     LEFT_MIDFIELDER(9, "LM"),
     ATTACKING_MIDFIELDER(10, "AM"),
-    STRIKER(11, "ST"),
-    SECOND_STRIKER(12, "SS"),
     RIGHT_WINGER(13, "RW"),
-    LEFT_WINGER(14, "LW");
+    LEFT_WINGER(14, "LW"),
+    SECOND_STRIKER(12, "SS"),
+    STRIKER(11, "ST");
 
     private final int positionNumber;
     private final String abbreviation;
