@@ -17,6 +17,7 @@ public class DetailedBioDTO {
     private String biography;
 
     public DetailedBioDTO(DetailedBio detailedBioDTO) {
+        this.id = detailedBioDTO.getId();
         this.fullname = detailedBioDTO.getFullname();
         this.birthdate = detailedBioDTO.getBirthdate();
         this.cityOfBirth = detailedBioDTO.getCityOfBirth();

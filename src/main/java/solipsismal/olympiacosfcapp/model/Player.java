@@ -9,6 +9,7 @@ import solipsismal.olympiacosfcapp.core.enums.Position;
 import solipsismal.olympiacosfcapp.core.enums.PreferredFoot;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -72,5 +73,17 @@ public class Player {
         this.detailedBio = detailedBio;
         this.playsForOlympiacos = playsForOlympiacos;
         this.playersMatches = new HashSet<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return isCaptain == player.isCaptain && Objects.equals(id, player.id) && Objects.equals(lastname, player.lastname) && Objects.equals(firstname, player.firstname) && Objects.equals(birthYear, player.birthYear) && Objects.equals(nationality, player.nationality) && Objects.equals(shirtNumber, player.shirtNumber) && position == player.position && preferredFoot == player.preferredFoot && Objects.equals(detailedBio, player.detailedBio) && Objects.equals(playsForOlympiacos, player.playsForOlympiacos) && Objects.equals(playersMatches, player.playersMatches);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, lastname, firstname, birthYear, nationality, shirtNumber, position, preferredFoot, isCaptain, detailedBio, playsForOlympiacos, playersMatches);
     }
 }

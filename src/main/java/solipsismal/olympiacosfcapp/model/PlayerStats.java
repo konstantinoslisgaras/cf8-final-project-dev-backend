@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import solipsismal.olympiacosfcapp.core.enums.Result;
 
 @Entity
 @AllArgsConstructor
@@ -33,11 +34,20 @@ public class PlayerStats {
     @Column(name = "goals_conceded", length = 4, nullable = false)
     private Integer goalsConceded = 0;
 
-    @Column(length = 4, nullable = false)
-    private Integer appearances = 0;
+    @Column(name = "matches_played", length = 4, nullable = false)
+    private Integer matchesPlayed = 0;
 
     @Column(name ="minutes_played", length = 3, nullable = false)
     private Integer minutesPlayed = 0;
+
+    @Column(length = 4, nullable = false)
+    private Integer wins = 0;
+
+    @Column(length = 4, nullable = false)
+    private Integer draws = 0;
+
+    @Column(length = 4, nullable = false)
+    private Integer losses = 0;
 
     @OneToOne
     private Player player;
@@ -47,13 +57,22 @@ public class PlayerStats {
         this.player = player;
     }
 
-    public void addMatchStats(PlayerMatch match) {
+    public void addMatchStats(PlayerMatch match, Result result) {
         this.goals += match.getGoals();
         this.assists += match.getAssists();
         this.yellowCards += match.getYellowCards();
         this.redCards += match.getRedCards();
         this.goalsConceded += match.getGoalsConceded();
-        this.appearances += match.getAppearances();
+        ++this.matchesPlayed;
         this.minutesPlayed += match.getMinutesPlayed();
+        addWinDrawLossStats(result);
+    }
+
+    public void addWinDrawLossStats(Result result) {
+        switch (result.toString()) {
+            case "WIN" : ++this.wins; break;
+            case "DRAW" : ++this.draws; break;
+            case "LOSS" : ++this.losses; break;
+        }
     }
 }

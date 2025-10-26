@@ -3,14 +3,14 @@ package solipsismal.olympiacosfcapp.core.enums;
 import lombok.Getter;
 
 @Getter
-public enum Ground {
-    NEUTRAL("N"),
-    HOME("H"),
-    AWAY("A");
+public enum Result {
+    DRAW("D"),
+    WIN("W"),
+    LOSS("L");
 
     private final String abbreviation;
 
-    Ground(String abbreviation) {
+    Result(String abbreviation) {
         this.abbreviation = abbreviation;
     }
 }

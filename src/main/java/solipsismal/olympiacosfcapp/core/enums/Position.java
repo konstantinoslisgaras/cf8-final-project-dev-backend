@@ -1,5 +1,8 @@
 package solipsismal.olympiacosfcapp.core.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Position {
     DO_NOT_USE(0, "DO_NOT_USE"),
     GOALKEEPER(1, "GK"),

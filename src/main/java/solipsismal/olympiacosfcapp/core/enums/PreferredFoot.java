@@ -4,7 +4,13 @@ import lombok.Getter;
 
 @Getter
 public enum PreferredFoot {
-    BOTH,
-    RIGHT,
-    LEFT
+    BOTH("B"),
+    RIGHT("R"),
+    LEFT("L");
+
+    private final String abbreviation;
+
+    PreferredFoot(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
 }
