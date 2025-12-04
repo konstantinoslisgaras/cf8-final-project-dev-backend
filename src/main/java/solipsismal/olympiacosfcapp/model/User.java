@@ -6,6 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import solipsismal.olympiacosfcapp.core.enums.GenderType;
 import solipsismal.olympiacosfcapp.core.enums.Role;
 
 import java.time.LocalDate;
@@ -25,27 +26,30 @@ public class User extends AbstractEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, length = 30)
     private String username;
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String firstname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String lastname;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "favorite_player")
+    @Enumerated(EnumType.STRING)
+    private GenderType genderType = GenderType.PREFER_NOT_TO_DISCLOSE;
+
+    @Column(name = "favorite_player", length = 100)
     private String favoritePlayer;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 
     @Column(name = "is_active")
     @ColumnDefault("true")
@@ -53,6 +57,14 @@ public class User extends AbstractEntity implements UserDetails {
 
     public String getFullName() {
         return (lastname == null) ? firstname : (firstname + " " + lastname.charAt(0) + ".");
+    }
+
+    private void deactivateAccount() {
+        this.isActive = false;
+    }
+
+    private void activateAccount() {
+        this.isActive = true;
     }
 
     @Override

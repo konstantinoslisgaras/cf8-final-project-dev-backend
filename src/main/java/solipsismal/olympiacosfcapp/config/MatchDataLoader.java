@@ -223,26 +223,64 @@ public class MatchDataLoader implements CommandLineRunner {
                 17, "Greek Super League Round 1, MatchDay: 11", mendilibar, season2526, teamStats17221125);
         saveMatchAndUpdateTotalStats(match17221125, teamStats17221125, season2526TotalTeamStats);
 
-        // Match 18 | OLYMPIACOS F.C. - Real Madrid CF -:- | 26/11/2025
-        TeamStats teamStats18261125 = new TeamStats("TS18261125");
+        // Match 18 | OLYMPIACOS F.C. - Real Madrid CF 3:4 | 26/11/2025
+        TeamStats teamStats18261125 = new TeamStats("TS18261125",
+                3, 3, 4, 1, 0);
         Match match18261125 = new Match("MA18261125",
                 olympiacos, opponentRepository.findByOpponentName("Real Madrid CF").orElseThrow(OpponentNotFoundException::new),
+                3, 4,
                 "26/11/2025", "22:00", WEDNESDAY, championsLeague, HOME,
                 18, "UEFA Champions League League Phase, MatchDay: 05", mendilibar, season2526, teamStats18261125);
-        matchRepository.save(match18261125);
+        saveMatchAndUpdateTotalStats(match18261125, teamStats18261125, season2526TotalTeamStats);
 
-        // Match 19 | Panaitolikos FC  - OLYMPIACOS F.C. -:- | 30/11/2025
-        TeamStats teamStats19301125 = new TeamStats("TS19301125");
+        // Match 19 | Panaitolikos FC  - OLYMPIACOS F.C. 0:1 | 30/11/2025
+        TeamStats teamStats19301125 = new TeamStats("TS19301125",
+                1, 1, 0, 0, 0);
         Match match19301125 = new Match("MA19301125",
                 olympiacos, opponentRepository.findByOpponentName("Panaitolikos FC").orElseThrow(OpponentNotFoundException::new),
+                1, 0,
                 "30/11/2025", "17:00", SUNDAY, superLeagueGreece, AWAY,
                 19, "Greek Super League Round 1, MatchDay: 12", mendilibar, season2526, teamStats19301125);
-        matchRepository.save(match19301125);
+        saveMatchAndUpdateTotalStats(match19301125, teamStats19301125, season2526TotalTeamStats);
+
+        // Match 20 | APO Ellas Syrou  - OLYMPIACOS F.C. 2:5 | 03/12/2025
+        TeamStats teamStats20031225 = new TeamStats("TS20031225",
+                5, 5, 2, 1, 0);
+        Match match20031225 = new Match("MA20031225",
+                olympiacos, opponentRepository.findByOpponentName("APO Ellas Syrou").orElseThrow(OpponentNotFoundException::new),
+                5, 2,
+                "03/12/2025", "13:30", WEDNESDAY, greekFootballCup, AWAY,
+                20, "Greek Football Cup League Phase, MatchDay: 03", mendilibar, season2526, teamStats20031225);
+        saveMatchAndUpdateTotalStats(match20031225, teamStats20031225, season2526TotalTeamStats);
+
+        // Match 21 | OLYMPIACOS F.C. - OFI Crete FC -:- | 06/12/2025
+        TeamStats teamStats21061225 = new TeamStats("TS21061225");
+        Match match21061225 = new Match("MA21061225",
+                olympiacos, opponentRepository.findByOpponentName("OFI Crete FC").orElseThrow(OpponentNotFoundException::new),
+                "06/12/2025", "17:00", SATURDAY, superLeagueGreece, HOME,
+                21, "Greek Super League Round 1, MatchDay: 13", mendilibar, season2526, teamStats21061225);
+        matchRepository.save(match21061225);
+
+        // Match 22 | FC Kairat Almaty - OLYMPIACOS F.C. -:- | 09/12/2025
+        TeamStats teamStats22091225 = new TeamStats("TS22091225");
+        Match match22091225 = new Match("MA22091225",
+                olympiacos, opponentRepository.findByOpponentName("FC Kairat Almaty").orElseThrow(OpponentNotFoundException::new),
+                "09/12/2025", "17:30", TUESDAY, championsLeague, AWAY,
+                22, "UEFA Champions League League Phase, MatchDay: 06", mendilibar, season2526, teamStats22091225);
+        matchRepository.save(match22091225);
+
+        // Match 23 | ARIS FC - OLYMPIACOS F.C. -:- | 14/12/2025
+        TeamStats teamStats23141225 = new TeamStats("TS23141225");
+        Match match23141225 = new Match("MA23141225",
+                olympiacos, opponentRepository.findByOpponentName("ARIS FC").orElseThrow(OpponentNotFoundException::new),
+                "14/12/2025", "20:00", SUNDAY, superLeagueGreece, AWAY,
+                23, "Greek Super League Round 2, MatchDay: 14", mendilibar, season2526, teamStats23141225);
+        matchRepository.save(match23141225);
 
         // Competition Position Setter
         competitionRepository.save(superLeagueGreece.setCompetitionPosition(1));
-        competitionRepository.save(championsLeague.setCompetitionPosition(31));
-        competitionRepository.save(greekFootballCup.setCompetitionPosition(5));
+        competitionRepository.save(championsLeague.setCompetitionPosition(33));
+        competitionRepository.save(greekFootballCup.setCompetitionPosition(1));
     }
 
     private void saveMatchAndUpdateTotalStats(Match match, TeamStats teamStats, TeamStats teamTotals) {

@@ -47,7 +47,6 @@ public class PlayerMatchDataLoader implements CommandLineRunner {
                 "Hezze", "Liatsikouras", "Garcia", "Mouzakitis", "Nascimento", "Scipioni", "Yazici", "Cabella", "Chiquinho",
                 "Martins", "Strefezza", "Podence", "Pnevmonidis", "El Kaabi", "Taremi", "Yaremchuk"
         );
-        playerStatsRepository.save(new PlayerStats("PSPL32095644", players.get("Botis")));
 
         // Players Matches
         // Match 1 | OLYMPIACOS F.C. - Asteras 2:0 | 23/08/2025
@@ -470,7 +469,7 @@ public class PlayerMatchDataLoader implements CommandLineRunner {
         setGKGoalsConceded(playerMatches11211025, players.get("Tzolakis"), 6);
         savePlayerMatchesAndUpdateTotalStats(playerMatches11211025, LOSS);
 
-        // Match 12 | OLYMPIACOS F.C. AEK FC 2:0 | 26/10/2025
+        // Match 12 | OLYMPIACOS F.C. - AEK FC 2:0 | 26/10/2025
         Match match12261025 = matchRepository.findById("MA12261025").orElseThrow();
         List<PlayerMatch> playerMatches12261025 = List.of(
                 new PlayerMatch("PM01505092", players.get("Tzolakis"), match12261025,
@@ -698,6 +697,122 @@ public class PlayerMatchDataLoader implements CommandLineRunner {
                         0, 0, 0, 0, 9)
         );
         savePlayerMatchesAndUpdateTotalStats(playerMatches17221125, WIN);
+
+        // Match 18 | OLYMPIACOS F.C. - Real Madrid CF 3:4 | 26/11/2025
+        Match match18261125 = matchRepository.findById("MA18261125").orElseThrow();
+        List<PlayerMatch> playerMatches18261125 = List.of(
+                new PlayerMatch("PM01999232", players.get("Tzolakis"), match18261125,
+                        0, 0, 0, 0, 97),
+                new PlayerMatch("PM02452340", players.get("Rodinei"), match18261125,
+                        0, 0, 0, 0, 74),
+                new PlayerMatch("PM03987573", players.get("Retsos"), match18261125,
+                        0, 0, 0, 0, 97),
+                new PlayerMatch("PM04110980", players.get("Pirola"), match18261125,
+                        0, 0, 0, 0, 64),
+                new PlayerMatch("PM05570693", players.get("Ortega"), match18261125,
+                        0, 0, 1, 0, 97),
+                new PlayerMatch("PM06789435", players.get("Garcia"), match18261125,
+                        0, 0, 0, 0, 47),
+                new PlayerMatch("PM07875471", players.get("Mouzakitis"), match18261125,
+                        0, 0, 0, 0, 97),
+                new PlayerMatch("PM08842312", players.get("Martins"), match18261125,
+                        0, 0, 0, 0, 97),
+                new PlayerMatch("PM09005308", players.get("Chiquinho"), match18261125,
+                        1, 0, 0, 0, 27),
+                new PlayerMatch("PM10253021", players.get("Podence"), match18261125,
+                        0, 0, 0, 0, 74),
+                new PlayerMatch("PM11103969", players.get("El Kaabi"), match18261125,
+                        1, 1, 0, 0, 97),
+                new PlayerMatch("PM12014050", players.get("Taremi"), match18261125,
+                        1, 0, 0, 0, 70),
+                new PlayerMatch("PM13117642", players.get("Hezze"), match18261125,
+                        0, 1, 0, 0, 50),
+                new PlayerMatch("PM14593410", players.get("Biancone"), match18261125,
+                        0, 0, 0, 0, 33),
+                new PlayerMatch("PM15830101", players.get("Costinha"), match18261125,
+                        0, 0, 0, 0, 23),
+                new PlayerMatch("PM16070072", players.get("Strefezza"), match18261125,
+                        0, 1, 0, 0, 23)
+        );
+        setGKGoalsConceded(playerMatches16091125, players.get("Tzolakis"), 4);
+        savePlayerMatchesAndUpdateTotalStats(playerMatches18261125, LOSS);
+
+        // Match 19 | Panaitolikos FC  - OLYMPIACOS F.C. 0:1 | 30/11/2025 2+ 4
+        Match match19301125 = matchRepository.findById("MA19301125").orElseThrow();
+        List<PlayerMatch> playerMatches19301125 = List.of(
+                new PlayerMatch("PM01092345", players.get("Tzolakis"), match19301125,
+                        0, 0, 0, 0, 96),
+                new PlayerMatch("PM02092321", players.get("Costinha"), match19301125,
+                        0, 0, 0, 0, 61),
+                new PlayerMatch("PM03092394", players.get("Retsos"), match19301125,
+                        0, 0, 0, 0, 45),
+                new PlayerMatch("PM04092372", players.get("Mancha"), match19301125,
+                        0, 0, 0, 0, 96),
+                new PlayerMatch("PM05092399", players.get("Onyemaechi"), match19301125,
+                        0, 0, 0, 0, 96),
+                new PlayerMatch("PM06309103", players.get("Hezze"), match19301125,
+                        0, 0, 0, 0, 96),
+                new PlayerMatch("PM07911314", players.get("Nascimento"), match19301125,
+                        0, 0, 0, 0, 61),
+                new PlayerMatch("PM08908546", players.get("Martins"), match19301125,
+                        0, 0, 0, 0, 96),
+                new PlayerMatch("PM09013242", players.get("El Kaabi"), match19301125,
+                        1, 0, 0, 0, 96),
+                new PlayerMatch("PM10001232", players.get("Strefezza"), match19301125,
+                        0, 0, 0, 0, 61),
+                new PlayerMatch("PM11904852", players.get("Yaremchuk"), match19301125,
+                        0, 0, 0, 0, 82),
+                new PlayerMatch("PM12312045", players.get("Kalogeropoulos"), match19301125,
+                        0, 0, 0, 0, 51),
+                new PlayerMatch("PM13939506", players.get("Rodinei"), match19301125,
+                        0, 0, 0, 0, 35),
+                new PlayerMatch("PM14434551", players.get("Mouzakitis"), match19301125,
+                        0, 0, 0, 0, 35),
+                new PlayerMatch("PM15678102", players.get("Yazici"), match19301125,
+                        0, 1, 0, 0, 35),
+                new PlayerMatch("PM16079645", players.get("Garcia"), match19301125,
+                        0, 0, 0, 0, 14)
+        );
+        savePlayerMatchesAndUpdateTotalStats(playerMatches19301125, WIN);
+
+        // Match 20 | APO Ellas Syrou  - OLYMPIACOS F.C. 2:5 | 03/12/2025 1+4
+        Match match20031225 = matchRepository.findById("MA20031225").orElseThrow();
+        List<PlayerMatch> playerMatches20031225 = List.of(
+                new PlayerMatch("PM01035923", players.get("Botis"), match20031225,
+                        0, 0, 0, 0, 95),
+                new PlayerMatch("PM02567183", players.get("Costinha"), match20031225,
+                        0, 0, 0, 0, 68),
+                new PlayerMatch("PM03950425", players.get("Kalogeropoulos"), match20031225,
+                        0, 0, 0, 0, 95),
+                new PlayerMatch("PM04770426", players.get("Mancha"), match20031225,
+                        0, 0, 1, 0, 95),
+                new PlayerMatch("PM05400429", players.get("Onyemaechi"), match20031225,
+                        0, 0, 0, 0, 81),
+                new PlayerMatch("PM06750302", players.get("Scipioni"), match20031225,
+                        0, 0, 0, 0, 95),
+                new PlayerMatch("PM07878753", players.get("Nascimento"), match20031225,
+                        0, 1, 0, 0, 81),
+                new PlayerMatch("PM08063999", players.get("Cabella"), match20031225,
+                        0, 1, 0, 0, 81),
+                new PlayerMatch("PM09989031", players.get("Taremi"), match20031225,
+                        1, 0, 0, 0, 69),
+                new PlayerMatch("PM10695434", players.get("Yazici"), match20031225,
+                        2, 1, 0, 0, 95),
+                new PlayerMatch("PM11011367", players.get("Yaremchuk"), match20031225,
+                        1, 0, 0, 0, 95),
+                new PlayerMatch("PM12012279", players.get("Vezo"), match20031225,
+                        0, 0, 0, 0, 27),
+                new PlayerMatch("PM13460194", players.get("Garcia"), match20031225,
+                        0, 0, 0, 0, 26),
+                new PlayerMatch("PM14556302", players.get("Rodinei"), match20031225,
+                        0, 1, 0, 0, 14),
+                new PlayerMatch("PM15577188", players.get("Strefezza"), match20031225,
+                        0, 1, 0, 0, 14),
+                new PlayerMatch("PM16869701", players.get("El Kaabi"), match20031225,
+                        1, 0, 0, 0, 14)
+        );
+        setGKGoalsConceded(playerMatches16091125, players.get("Botis"), 2);
+        savePlayerMatchesAndUpdateTotalStats(playerMatches20031225, WIN);
     }
 
     private Map<String, Player> getPlayersByLastnames(String... lastnames) throws PlayerNotFoundException{

@@ -3,9 +3,13 @@ package solipsismal.olympiacosfcapp.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import solipsismal.olympiacosfcapp.core.exceptions.OpponentNotFoundException;
 import solipsismal.olympiacosfcapp.model.*;
 import solipsismal.olympiacosfcapp.repository.CoachRepository;
 import solipsismal.olympiacosfcapp.repository.CoachStatsRepository;
+
+import static solipsismal.olympiacosfcapp.core.enums.Day.WEDNESDAY;
+import static solipsismal.olympiacosfcapp.core.enums.Ground.HOME;
 
 @Component
 @Order(3)
@@ -80,6 +84,15 @@ public class CoachDataLoader implements CommandLineRunner {
 
         // Match 17 | OLYMPIACOS F.C. - Atromitos FC 3:0 | 22/11/2025
         updateCoachStats(3, 0, mendilibar);
+
+        // Match 18 | OLYMPIACOS F.C. - Real Madrid CF 3:4 | 26/11/2025
+        updateCoachStats(3, 4, mendilibar);
+
+        // Match 19 | Panaitolikos FC  - OLYMPIACOS F.C. 0:1 | 30/11/2025
+        updateCoachStats(1, 0, mendilibar);
+
+        // Match 20 | APO Ellas Syrou  - OLYMPIACOS F.C. 2:5 | 03/12/2025
+        updateCoachStats(5, 2, mendilibar);
     }
 
     private void updateCoachStats(int goals, int goalsConceded, Coach coach) {

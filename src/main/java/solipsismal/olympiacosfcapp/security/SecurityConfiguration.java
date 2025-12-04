@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/api/auth/authenticate", "/api/auth/register").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
@@ -48,8 +48,8 @@ public class SecurityConfiguration {
                                 "/v3/api-docs.yaml",
                                 "/swagger-resources/**",
                                 "/configuration/**").permitAll()
-                        .requestMatchers("/api/homepage/**").permitAll()
-                        .requestMatchers("/api/**").hasRole("SUPER_ADMIN")
+                        .requestMatchers("/api/profile/**").hasRole("SUPER_ADMIN")
+                        .requestMatchers("/api/super-admin").hasRole("SUPER_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
@@ -57,7 +57,9 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling((exceptions) -> exceptions
                         .authenticationEntryPoint(myCustomAuthenticationEntryPoint())
-                        .accessDeniedHandler(myCustomAccessDeniedHandler()));
+                        .accessDeniedHandler(myCustomAccessDeniedHandler()))
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
@@ -66,8 +68,9 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("*"));
-        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "Origin"));
+        configuration.setExposedHeaders(List.of("Authorization"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

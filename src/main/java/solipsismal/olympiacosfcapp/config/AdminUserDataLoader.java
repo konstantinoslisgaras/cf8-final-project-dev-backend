@@ -25,7 +25,7 @@ public class AdminUserDataLoader implements CommandLineRunner {
         if (userRepository.findByUsername("admin7").isEmpty()) {
             User admin7 = new User();
             admin7.setUsername("admin7");
-            admin7.setPassword(passwordEncoder.encode("1234567"));
+            admin7.setPassword(passwordEncoder.encode("1234567QWEqwe!@#"));
             admin7.setFirstname("SUPER");
             admin7.setLastname("ADMIN");
             admin7.setEmail("konstantinoslisgaras@gmail.com");
@@ -35,7 +35,7 @@ public class AdminUserDataLoader implements CommandLineRunner {
         if (userRepository.findByUsername("user7").isEmpty()) {
             User user7 = new User();
             user7.setUsername("user7");
-            user7.setPassword(passwordEncoder.encode("1234567"));
+            user7.setPassword(passwordEncoder.encode("1234567QWEqwe!@#"));
             user7.setFirstname("USER");
             user7.setLastname("USER");
             user7.setEmail("konstantinoslisgaras@googlemail.com");
