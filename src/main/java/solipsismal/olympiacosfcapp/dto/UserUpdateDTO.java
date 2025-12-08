@@ -1,6 +1,7 @@
 package solipsismal.olympiacosfcapp.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
@@ -15,11 +16,9 @@ import java.time.LocalDate;
 @Builder
 public class UserUpdateDTO {
 
-    @NotBlank(message = "First name is required")
     @Length(min = 2, max = 30, message = "First name must be between 2 and 30 characters.")
-    private Integer firstname;
+    private String firstname;
 
-    @NotBlank(message = "Last name is required")
     @Length(min = 2, max = 30, message = "Last name must be between 2 and 30 characters.")
     private String lastname;
 
@@ -27,6 +26,7 @@ public class UserUpdateDTO {
             message = "Invalid Password")
     private String password;
 
+    @Past(message = "Date of birth must be in the past")
     private LocalDate dateOfBirth;
 
     @Length(max = 30, message = "Favorite player name must have a maximum of 100 characters.")

@@ -13,7 +13,6 @@ import solipsismal.olympiacosfcapp.core.exceptions.CoachStatsNotFoundException;
 import solipsismal.olympiacosfcapp.dto.CoachStatsDTO;
 import solipsismal.olympiacosfcapp.mapper.CoachStatsMapper;
 import solipsismal.olympiacosfcapp.model.Coach;
-import solipsismal.olympiacosfcapp.model.CoachStats;
 import solipsismal.olympiacosfcapp.repository.CoachRepository;
 
 @RestController

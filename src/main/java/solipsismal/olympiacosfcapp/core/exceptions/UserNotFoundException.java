@@ -9,6 +9,10 @@ public class UserNotFoundException extends AppGenericException {
     }
 
     public UserNotFoundException(String username) {
-        super(DEFAULT_CODE, "User: '" + username + "' was not found");
+        super(DEFAULT_CODE, "User with username: '" + username + "' was not found");
+    }
+
+    public UserNotFoundException(Long id) {
+        super(DEFAULT_CODE, "User with id: '" + id + "' was not found");
     }
 }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record AuthenticationRequestDTO(
         @NotNull
-        @Schema(example = "admin7")
+        @Schema(example = "admin")
         String username,
 
         @NotNull
