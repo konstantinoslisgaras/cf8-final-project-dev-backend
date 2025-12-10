@@ -1,7 +1,6 @@
 package solipsismal.olympiacosfcapp.dto;
 
 import lombok.*;
-import solipsismal.olympiacosfcapp.core.enums.GenderType;
 import solipsismal.olympiacosfcapp.model.User;
 
 import java.time.LocalDate;
@@ -21,6 +20,8 @@ public class UserDTO {
     private String email;
     private LocalDate dateOfBirth;
     private String genderType;
+    private String supportedPlayerId;
+    private String supportedPlayerName;
     private String favoriteLegend;
     private boolean isOlympiacosFan;
     private String role;
@@ -35,6 +36,8 @@ public class UserDTO {
         this.email = user.getEmail();
         this.dateOfBirth = user.getDateOfBirth();
         this.genderType = user.getGenderType().toString();
+        this.supportedPlayerId = user.getSupportedPlayer().getId();
+        this.supportedPlayerName = user.getSupportedPlayer().getLastname();
         this.favoriteLegend = user.getFavoriteLegend();
         this.isOlympiacosFan = user.getIsOlympiacosFan();
         this.role = user.getRole().toString();

@@ -39,6 +39,9 @@ public class Player {
     @Column(name = "shirt_number", length = 2, unique = false, nullable = false)
     private Integer shirtNumber;
 
+    @Column(unique = false, nullable = false)
+    private Integer fans = 0;
+
     @Enumerated(EnumType.STRING)
     private Position position;
 
@@ -73,6 +76,14 @@ public class Player {
         this.detailedBio = detailedBio;
         this.playsForOlympiacos = playsForOlympiacos;
         this.playersMatches = new HashSet<>();
+    }
+
+    public void addFan() {
+        this.fans++;
+    }
+
+    public void removeFan() {
+        if (this.fans > 0) this.fans--;
     }
 
     @Override

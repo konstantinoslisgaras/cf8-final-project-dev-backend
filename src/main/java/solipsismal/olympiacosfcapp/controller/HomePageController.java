@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import solipsismal.olympiacosfcapp.dto.CompetitionDTO;
 import solipsismal.olympiacosfcapp.dto.MatchBasicDTO;
-import solipsismal.olympiacosfcapp.dto.TeamStatsDTO;
 import solipsismal.olympiacosfcapp.service.CompetitionService;
 import solipsismal.olympiacosfcapp.service.MatchService;
 import solipsismal.olympiacosfcapp.service.PlayerStatsService;
-import solipsismal.olympiacosfcapp.service.TeamStatsService;
 
 import java.util.*;
 
@@ -20,7 +18,6 @@ import java.util.*;
 public class HomePageController {
 
     private final MatchService matchService;
-    private final TeamStatsService teamStatsService;
     private final PlayerStatsService playerStatsService;
     private final CompetitionService competitionService;
 
@@ -35,10 +32,6 @@ public class HomePageController {
         // Next match
         Optional<MatchBasicDTO> nextMatch = matchService.getNextMatch();
         homePageData.put("nextMatch", nextMatch);
-
-        // Team stats
-        List<TeamStatsDTO> teamStats20252026 = teamStatsService.findById("TS20252026");
-        homePageData.put("teamStats20252026", teamStats20252026);
 
         // Player stat leaders
         homePageData.put("topScorer", Objects.requireNonNull(playerStatsService.getTopScorer().orElse(null)));
@@ -59,6 +52,9 @@ public class HomePageController {
         // Competition stats
         List<CompetitionDTO> competitionStatus = competitionService.findActive();
         homePageData.put("competitionsStatus", competitionStatus);
+
+        // Current streak
+        homePageData.put("currentStreak", Objects.requireNonNull(matchService.getCurrentStreak()));
 
         return homePageData;
     }

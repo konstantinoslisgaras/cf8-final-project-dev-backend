@@ -8,13 +8,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import solipsismal.olympiacosfcapp.core.exceptions.PlayerNotFoundException;
 import solipsismal.olympiacosfcapp.core.exceptions.UserAlreadyExistsException;
 import solipsismal.olympiacosfcapp.dto.*;
+import solipsismal.olympiacosfcapp.service.PlayerService;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,6 +23,7 @@ import java.util.Map;
 public class AuthRestController {
 
     private final AuthenticationService authenticationService;
+    private final PlayerService playerService;
 
     @Operation(
             summary = "Authenticate user",
@@ -82,12 +83,17 @@ public class AuthRestController {
     public ResponseEntity<?> register(@RequestBody @Valid UserRegisterRequestDTO dto) {
         try {
             return ResponseEntity.ok(authenticationService.register(dto));
-        } catch (UserAlreadyExistsException e) {
+        } catch (UserAlreadyExistsException | PlayerNotFoundException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of(
-                            "code", e.getErrorCode(),
+                            "code", e.getCause(),
                             "description", e.getMessage()
                     ));
         }
+    }
+
+    @GetMapping("/register")
+    public List<PlayerListDTO> getPlayerList() {
+        return playerService.getPlayerList();
     }
 }

@@ -3,13 +3,8 @@ package solipsismal.olympiacosfcapp.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import solipsismal.olympiacosfcapp.core.exceptions.OpponentNotFoundException;
 import solipsismal.olympiacosfcapp.model.*;
 import solipsismal.olympiacosfcapp.repository.CoachRepository;
-import solipsismal.olympiacosfcapp.repository.CoachStatsRepository;
-
-import static solipsismal.olympiacosfcapp.core.enums.Day.WEDNESDAY;
-import static solipsismal.olympiacosfcapp.core.enums.Ground.HOME;
 
 @Component
 @Order(3)

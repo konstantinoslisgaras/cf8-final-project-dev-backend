@@ -37,8 +37,12 @@ public record UserRegisterRequestDTO(
         @Schema(example = "1991-11-14")
         LocalDate dateOfBirth,
 
-        @Schema(example = "Male")
+        @Schema(example = "MALE")
         GenderType genderType,
+
+        @NotBlank(message = "Supported player is required")
+        @Schema(example = "PL53859301")
+        String supportedPlayerId,
 
         @Schema(example = "Giovanni Silva De Oliveira")
         String favoriteLegend,

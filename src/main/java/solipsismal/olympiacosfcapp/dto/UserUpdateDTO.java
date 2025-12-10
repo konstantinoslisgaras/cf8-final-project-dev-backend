@@ -1,9 +1,7 @@
 package solipsismal.olympiacosfcapp.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +26,8 @@ public class UserUpdateDTO {
 
     @Past(message = "Date of birth must be in the past")
     private LocalDate dateOfBirth;
+
+    private String supportedPlayerId;
 
     @Length(max = 30, message = "Favorite legend name must have a maximum of 100 characters.")
     private String favoriteLegend;

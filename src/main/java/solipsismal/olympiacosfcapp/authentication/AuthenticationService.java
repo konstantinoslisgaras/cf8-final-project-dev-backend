@@ -8,12 +8,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import solipsismal.olympiacosfcapp.core.enums.Role;
+import solipsismal.olympiacosfcapp.core.exceptions.PlayerNotFoundException;
 import solipsismal.olympiacosfcapp.core.exceptions.UserAlreadyExistsException;
 import solipsismal.olympiacosfcapp.dto.AuthenticationRequestDTO;
 import solipsismal.olympiacosfcapp.dto.AuthenticationResponseDTO;
 import solipsismal.olympiacosfcapp.dto.UserRegisterRequestDTO;
 import solipsismal.olympiacosfcapp.dto.UserRegisterResponseDTO;
+import solipsismal.olympiacosfcapp.model.Player;
 import solipsismal.olympiacosfcapp.model.User;
+import solipsismal.olympiacosfcapp.repository.PlayerRepository;
 import solipsismal.olympiacosfcapp.repository.UserRepository;
 
 @Service
@@ -21,11 +24,12 @@ import solipsismal.olympiacosfcapp.repository.UserRepository;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
+    private final PlayerRepository playerRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public UserRegisterResponseDTO register(UserRegisterRequestDTO userRegisterRequestDTO) {
+    public UserRegisterResponseDTO register(UserRegisterRequestDTO userRegisterRequestDTO) throws PlayerNotFoundException {
 
         if (userRepository.findByUsername(userRegisterRequestDTO.username()).isPresent()) {
             throw new UserAlreadyExistsException("Username", "User with username: " + userRegisterRequestDTO.username() + " already exists.");
@@ -35,6 +39,10 @@ public class AuthenticationService {
             throw new UserAlreadyExistsException("Email", "User with email: " + userRegisterRequestDTO.email() + " already exists.");
         }
 
+        Player player = playerRepository.findById(userRegisterRequestDTO.supportedPlayerId()).orElseThrow(PlayerNotFoundException::new);
+        player.addFan();
+        playerRepository.save(player);
+
         User user = User.builder()
                 .username(userRegisterRequestDTO.username())
                 .password(passwordEncoder.encode(userRegisterRequestDTO.password()))
@@ -43,6 +51,7 @@ public class AuthenticationService {
                 .email(userRegisterRequestDTO.email())
                 .dateOfBirth(userRegisterRequestDTO.dateOfBirth())
                 .favoriteLegend(userRegisterRequestDTO.favoriteLegend())
+                .supportedPlayer(player)
                 .genderType(userRegisterRequestDTO.genderType())
                 .isOlympiacosFan(userRegisterRequestDTO.isOlympiacosFan() != null ? userRegisterRequestDTO.isOlympiacosFan() : true)
                 .role(Role.USER)

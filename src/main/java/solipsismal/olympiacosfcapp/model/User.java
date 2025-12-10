@@ -46,6 +46,10 @@ public class User extends AbstractEntity implements UserDetails {
     @Builder.Default
     private GenderType genderType = GenderType.PREFER_NOT_TO_DISCLOSE;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supported_player_id", nullable = false)
+    private Player supportedPlayer;
+
     @Column(name = "favorite_legend", length = 100)
     private String favoriteLegend;
 

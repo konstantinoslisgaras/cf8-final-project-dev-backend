@@ -263,13 +263,15 @@ public class MatchDataLoader implements CommandLineRunner {
                 21, "Greek Super League Round 1, MatchDay: 13", mendilibar, season2526, teamStats21061225);
         saveMatchAndUpdateTotalStats(match21061225, teamStats21061225, season2526TotalTeamStats);
 
-        // Match 22 | FC Kairat Almaty - OLYMPIACOS F.C. -:- | 09/12/2025
-        TeamStats teamStats22091225 = new TeamStats("TS22091225");
+        // Match 22 | FC Kairat Almaty - OLYMPIACOS F.C. 0:1 | 09/12/2025
+        TeamStats teamStats22091225 = new TeamStats("TS22091225",
+                1, 1, 0, 2, 0);
         Match match22091225 = new Match("MA22091225",
                 olympiacos, opponentRepository.findByOpponentName("FC Kairat Almaty").orElseThrow(OpponentNotFoundException::new),
+                1, 0,
                 "09/12/2025", "17:30", TUESDAY, championsLeague, AWAY,
                 22, "UEFA Champions League League Phase, MatchDay: 06", mendilibar, season2526, teamStats22091225);
-        matchRepository.save(match22091225);
+        saveMatchAndUpdateTotalStats(match22091225, teamStats22091225, season2526TotalTeamStats);
 
         // Match 23 | ARIS FC - OLYMPIACOS F.C. -:- | 14/12/2025
         TeamStats teamStats23141225 = new TeamStats("TS23141225");
