@@ -91,6 +91,9 @@ public class CoachDataLoader implements CommandLineRunner {
 
         // Match 21 | OLYMPIACOS F.C. - OFI Crete FC 3:0 | 06/12/2025
         updateCoachStats(3, 0, mendilibar);
+
+        // Match 22 | FC Kairat Almaty - OLYMPIACOS F.C. 0:1 | 09/12/2025
+        updateCoachStats(1, 0, mendilibar);
     }
 
     private void updateCoachStats(int goals, int goalsConceded, Coach coach) {

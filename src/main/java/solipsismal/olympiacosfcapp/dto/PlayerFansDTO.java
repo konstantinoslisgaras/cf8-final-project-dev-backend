@@ -1,5 +1,6 @@
 package solipsismal.olympiacosfcapp.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import solipsismal.olympiacosfcapp.model.Player;
@@ -8,14 +9,15 @@ import static solipsismal.olympiacosfcapp.utils.PlayerUtils.formatPlayerFullName
 
 @Getter
 @Setter
-public class PlayerListDTO {
+@AllArgsConstructor
+public class PlayerFansDTO {
     private String id;
     private String name;
-    private Integer shirtNumber;
+    private Integer fans;
 
-    public PlayerListDTO(Player player) {
+    public PlayerFansDTO(Player player) {
         this.id = player.getId();
         this.name = formatPlayerFullName(player);
-        this.shirtNumber = player.getShirtNumber();
+        this.fans = player.getFans();
     }
 }

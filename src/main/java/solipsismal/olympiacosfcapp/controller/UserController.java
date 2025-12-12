@@ -9,13 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import solipsismal.olympiacosfcapp.core.exceptions.PlayerNotFoundException;
 import solipsismal.olympiacosfcapp.core.exceptions.UserNotFoundException;
-import solipsismal.olympiacosfcapp.dto.PlayerListDTO;
 import solipsismal.olympiacosfcapp.dto.UserDTO;
 import solipsismal.olympiacosfcapp.dto.UserUpdateDTO;
-import solipsismal.olympiacosfcapp.service.PlayerService;
 import solipsismal.olympiacosfcapp.service.UserService;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

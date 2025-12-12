@@ -14,6 +14,7 @@ import solipsismal.olympiacosfcapp.core.exceptions.UserAlreadyExistsException;
 import solipsismal.olympiacosfcapp.dto.*;
 import solipsismal.olympiacosfcapp.service.PlayerService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -83,17 +84,19 @@ public class AuthRestController {
     public ResponseEntity<?> register(@RequestBody @Valid UserRegisterRequestDTO dto) {
         try {
             return ResponseEntity.ok(authenticationService.register(dto));
-        } catch (UserAlreadyExistsException | PlayerNotFoundException e) {
+        } catch (UserAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of(
-                            "code", e.getCause(),
-                            "description", e.getMessage()
+                            "error", "USER_EXISTS",
+                            "message", e.getMessage(),
+                            "timestamp", LocalDateTime.now()
+                    ));
+        } catch (PlayerNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of(
+                            "error", "PLAYER_NOT_FOUND",
+                            "timestamp", LocalDateTime.now()
                     ));
         }
-    }
-
-    @GetMapping("/register")
-    public List<PlayerListDTO> getPlayerList() {
-        return playerService.getPlayerList();
     }
 }

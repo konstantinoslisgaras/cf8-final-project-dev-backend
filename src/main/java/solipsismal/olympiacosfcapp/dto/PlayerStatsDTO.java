@@ -2,6 +2,7 @@ package solipsismal.olympiacosfcapp.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import solipsismal.olympiacosfcapp.utils.PlayerUtils;
 
 @Getter
 @Setter
@@ -25,7 +26,7 @@ public class PlayerStatsDTO {
                           int goals, int assists, int yellowCards, int redCards, int goalsConceded, int cleanSheets, int minutesPlayed, int matchesPlayed,
                           int wins, int draws, int losses) {
         this.playerId = playerId;
-        this.name = getConcatenatedName(lastname, firstname);
+        this.name = PlayerUtils.getConcatenatedName(lastname, firstname);
         this.position = position.replace("_", " ");
         this.goals = goals;
         this.assists = assists;
@@ -38,10 +39,5 @@ public class PlayerStatsDTO {
         this.wins = wins;
         this.draws = draws;
         this.losses = losses;
-    }
-
-    private String getConcatenatedName(String lastname, String firstname) {
-        if (firstname == null || firstname.isEmpty()) return lastname;
-        return lastname + " " + firstname.charAt(0) + ".";
     }
 }

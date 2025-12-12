@@ -8,6 +8,7 @@ import solipsismal.olympiacosfcapp.dto.CompetitionDTO;
 import solipsismal.olympiacosfcapp.dto.MatchBasicDTO;
 import solipsismal.olympiacosfcapp.service.CompetitionService;
 import solipsismal.olympiacosfcapp.service.MatchService;
+import solipsismal.olympiacosfcapp.service.PlayerService;
 import solipsismal.olympiacosfcapp.service.PlayerStatsService;
 
 import java.util.*;
@@ -18,6 +19,7 @@ import java.util.*;
 public class HomePageController {
 
     private final MatchService matchService;
+    private final PlayerService playerService;
     private final PlayerStatsService playerStatsService;
     private final CompetitionService competitionService;
 
@@ -32,6 +34,13 @@ public class HomePageController {
         // Next match
         Optional<MatchBasicDTO> nextMatch = matchService.getNextMatch();
         homePageData.put("nextMatch", nextMatch);
+
+        // Competition stats
+        List<CompetitionDTO> competitionStatus = competitionService.findActive();
+        homePageData.put("competitionsStatus", competitionStatus);
+
+        // Current streak
+        homePageData.put("currentStreak", Objects.requireNonNull(matchService.getCurrentStreak()));
 
         // Player stat leaders
         homePageData.put("topScorer", Objects.requireNonNull(playerStatsService.getTopScorer().orElse(null)));
@@ -49,12 +58,8 @@ public class HomePageController {
         homePageData.put("mostWins", Objects.requireNonNull(playerStatsService.getPlayerWithMostWins().orElse(null)));
         homePageData.put("top5MostWins", Objects.requireNonNull(playerStatsService.getTop5PlayersWithMostWins()));
 
-        // Competition stats
-        List<CompetitionDTO> competitionStatus = competitionService.findActive();
-        homePageData.put("competitionsStatus", competitionStatus);
-
-        // Current streak
-        homePageData.put("currentStreak", Objects.requireNonNull(matchService.getCurrentStreak()));
+        // Fans
+        homePageData.put("top10Fans", Objects.requireNonNull(playerService.getTop10Fans()));
 
         return homePageData;
     }

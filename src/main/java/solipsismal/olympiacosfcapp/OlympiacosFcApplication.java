@@ -22,5 +22,5 @@ public class OlympiacosFcApplication {
 		System.out.println("=".repeat(100));
 	}
 
-	// TO DO: edit profile - fix static data to be updated
+	// TO DO: edit profile in superadmin also- flyway
 }

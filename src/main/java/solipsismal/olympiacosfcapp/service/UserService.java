@@ -2,12 +2,17 @@ package solipsismal.olympiacosfcapp.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import solipsismal.olympiacosfcapp.core.exceptions.PlayerNotFoundException;
 import solipsismal.olympiacosfcapp.core.exceptions.UserNotFoundException;
 import solipsismal.olympiacosfcapp.dto.UserDTO;
 import solipsismal.olympiacosfcapp.dto.UserUpdateDTO;
+import solipsismal.olympiacosfcapp.filters.Paginated;
 import solipsismal.olympiacosfcapp.model.Player;
 import solipsismal.olympiacosfcapp.model.User;
 import solipsismal.olympiacosfcapp.repository.PlayerRepository;
@@ -52,31 +57,43 @@ public class UserService implements IUserService {
             user.setFavoriteLegend(dto.getFavoriteLegend().trim());
         }
 
-        if (dto.getSupportedPlayerId() != null) {
-            Player player = playerRepository.findById(dto.getSupportedPlayerId())
-                    .orElseThrow(PlayerNotFoundException::new);
-            user.setSupportedPlayer(player);
-        }
-
         if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
 
         if (dto.getSupportedPlayerId() != null && !dto.getSupportedPlayerId().isBlank()) {
-            Player oldPlayer = user.getSupportedPlayer();
-            Player newPlayer = playerRepository.findById(dto.getSupportedPlayerId())
+            String newPlayerId = dto.getSupportedPlayerId();
+            Player newPlayer = playerRepository.findById(newPlayerId)
                     .orElseThrow(PlayerNotFoundException::new);
 
-            if (oldPlayer != null && !oldPlayer.getId().equals(newPlayer.getId())) {
+            Player oldPlayer = user.getSupportedPlayer();
+
+            boolean isSamePlayer = oldPlayer != null && oldPlayer.getId().equals(newPlayer.getId());
+
+            if (!isSamePlayer) {
+                if (oldPlayer != null) {
+                    oldPlayer.removeFan();
+                    playerRepository.save(oldPlayer);
+                }
+                newPlayer.addFan();
+                playerRepository.save(newPlayer);
+            }
+            user.setSupportedPlayer(newPlayer);
+        } else {
+            Player oldPlayer = user.getSupportedPlayer();
+            if (oldPlayer != null) {
                 oldPlayer.removeFan();
                 playerRepository.save(oldPlayer);
             }
-
-            newPlayer.addFan();
-            playerRepository.save(newPlayer);
-            user.setSupportedPlayer(newPlayer);
+            user.setSupportedPlayer(null);
         }
-
         return new UserDTO(userRepository.save(user));
+    }
+
+    @Override
+    public Paginated<UserDTO> getPaginatedUsers(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
+        Page<User> usersPage = userRepository.findAll(pageable);
+        return Paginated.fromPage(usersPage.map(UserDTO::new));
     }
 }

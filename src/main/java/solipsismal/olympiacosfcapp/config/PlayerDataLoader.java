@@ -7,6 +7,8 @@ import solipsismal.olympiacosfcapp.model.DetailedBio;
 import solipsismal.olympiacosfcapp.model.Player;
 import solipsismal.olympiacosfcapp.repository.PlayerRepository;
 
+import java.util.Optional;
+
 import static solipsismal.olympiacosfcapp.core.enums.Position.*;
 import static solipsismal.olympiacosfcapp.core.enums.PreferredFoot.*;
 
@@ -26,7 +28,7 @@ public class PlayerDataLoader implements CommandLineRunner {
         DetailedBio tzolakisBio = new DetailedBio("DB53859301", "Konstantinos \"Konstantis\" Tzolakis", "08/11/2002",
                 "Chania", "", 1.93, "Platanias", "Konstantinos \"Konstantis\" Tzolakis (born 8 November 2002) is a Greek professional footballer who plays as a goalkeeper for Olympiacos and the Greece national team. A product of Platanias and later the Olympiacos academy, he debuted for the senior side in 2019. He first made headlines in the 2020 Greek Cup Final, keeping a clean sheet in Olympiacos’s victory. Tzolakis’s breakthrough came during the 2023–24 UEFA Europa Conference League, where his decisive penalty saves against Fenerbahçe in the quarter-finals propelled Olympiacos toward winning their first European trophy. By 2025 he had established himself as the club’s first-choice goalkeeper, known for his agility, composure under pressure and shot-stopping ability, while also earning regular caps with the Greek national team.");
         playerRepository.save(new Player("PL53859301", "Tzolakis", "Konstantis", 2002,
-                        "Greece", 88, GOALKEEPER, BOTH, false, tzolakisBio, true));
+                        "Greece", 88, GOALKEEPER, BOTH, true, tzolakisBio, true));
         // Paschalakis
         DetailedBio paschalakisBio = new DetailedBio("DB90113428", "Alexandros Paschalakis", "28/07/1989",
                 "Xanthi", "", 1.97, "PAOK", "Alexandros Paschalakis (born 28 July 1989) is a Greek professional goalkeeper for Olympiacos and the Greece national team. Standing 1.97 m, he began his career with smaller clubs in Greece before rising to prominence at PAS Giannina, earning a move to PAOK in 2017. With PAOK he won the 2018–19 Super League and multiple Greek Cups, establishing himself as one of the top domestic goalkeepers. In 2022 he joined Olympiacos, where he contributed to the club’s historic 2023–24 UEFA Europa Conference League triumph. A Greek international since 2019, Paschalakis is recognized for his height, strong reflexes and leadership in high-pressure matches.");
@@ -41,7 +43,7 @@ public class PlayerDataLoader implements CommandLineRunner {
         DetailedBio rodineiBio = new DetailedBio("DB82542910", "Rodinei Marcelo de Almeida", "29/01/1992",
                 "Tatuí", "", 1.75, "Flamengo", "Rodinei Marcelo de Almeida (born 29 January 1992), known simply as Rodinei, is a Brazilian right-back for Olympiacos. After beginning his career in Brazil, he rose to prominence at Flamengo, where he won multiple domestic honors and two Copa Libertadores titles. In January 2023 he signed for Olympiacos, becoming an influential figure in their 2023–24 UEFA Europa Conference League triumph. Renowned for his attacking instincts, stamina and work rate, Rodinei has established himself as a reliable veteran presence in the Greek Super League.");
         playerRepository.save(new Player("PL82542910", "Rodinei", "", 1992,
-                "Brazil", 23, RIGHT_BACK, RIGHT, false, rodineiBio, true));
+                "Brazil", 23, RIGHT_BACK, RIGHT, true, rodineiBio, true));
         // Costinha
         DetailedBio costinhaBio = new DetailedBio("DB14949263", "João Pedro Loureiro da Costa", "26/03/2000",
                 "Póvoa de Varzim", "", 1.81, "Rio Ave", "João Pedro Loureiro da Costa (born 26 March 2000), commonly known as Costinha, is a Portuguese right-back for Olympiacos. A product of Rio Ave, he played regularly in the Primeira Liga before joining Olympiacos in 2024. Known for his defensive consistency and pace, he has adapted well to the Greek Super League and adds depth and competition at right-back for Olympiacos.");
