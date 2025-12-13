@@ -18,7 +18,6 @@ public class OlympiacosDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (olympiacosRepository.existsById("OL00000007")) return;
         // Olympiacos
         String olympiacosId = "OL00000007";
         String olympiacosName = "Olympiacos F.C.";
