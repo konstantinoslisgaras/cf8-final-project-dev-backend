@@ -69,8 +69,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:3000", "http://localhost:5173",
-                "https://omicron-team-stats-cf8-backend.onrender.com",
+                "http://localhost:5173",
                 "https://omicron-team-stats-cf8-frontend.onrender.com"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "Origin"));
