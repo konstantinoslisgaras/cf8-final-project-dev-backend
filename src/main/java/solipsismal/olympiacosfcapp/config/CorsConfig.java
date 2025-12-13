@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(@SuppressWarnings("NullableProblems") CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins("http://localhost:5173", "https://omicron-team-stats-cf8-backend.onrender.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
